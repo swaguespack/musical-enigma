@@ -1,53 +1,64 @@
 // Dependencies
 const inquirer = require('inquirer');
+const path = require("path");
 const fs = require('fs');
 
+const OUTPUT_DIR = path.resolve(__dirname, "dist");
+const outputPath = path.join(OUTPUT_DIR, "team.html");
+
 // Import classes 
-const Manager = require('./lib/manager');
-const Engineer = require('./lib/engineer');
-const Intern = require('./lib/intern');
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
 
 // Page generated
-const genereateHTML = require('./src/generateHTML');
+const render = require('./src/generateHTML');
 
 // Team array
 const teamArray =[];
 
-// Manager prompts
-const addManager = () =>{
-    return new Promise((res,rej) => {
-        inquirer.prompt([
-            {
-                type: "input",
-                message: "What is the manager's name?",
-                name:"name"
-            },
-            {
-                type: "input",
-                message: "What is the manager's id?",
-                name: "id"
-            },
-            {
-                type: "input",
-                message: "What is the manager's email?",
-                name: "email",
-            },
-            {
-                type: "input",
-                message: "What is the manager's office number?",
-                name: "officeNumber",
-            },
-        ]).then(answers =>{
-            const manager = new Manager(answers.name, answers.id,answers.email,answers.officeNumber);
-            teamArray.push(manager);
-            res();
-        })
-    })
+function startApp(){
+    addManager();
 }
 
-// Employee prompts
+// Function to create manager from prompts
+const addManager = () =>{
+
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "What is the manager's name?",
+            name:"name"
+        },
+        {
+            type: "input",
+            message: "What is the manager's id?",
+            name: "id"
+        },
+        {
+            type: "input",
+            message: "What is the manager's email?",
+            name: "email",
+        },
+        {
+            type: "input",
+            message: "What is the manager's office number?",
+            name: "officeNumber",
+        },
+    ]).then(answers =>{
+        const manager = new Manager(answers.name, answers.id,answers.email,answers.officeNumber);
+        //.table(manager);
+        teamArray.push(manager);
+        addEmployee();
+        
+    })
+
+}
+
+
+// Function to create employees from prompts
 const addEmployee = () => {
-    return new Promise((resolve, rej) => {
+
         inquirer.prompt([
             {
                 type: "list",
@@ -107,43 +118,33 @@ const addEmployee = () => {
                 switch (answers.employeeType) {
                     case "Engineer":
                         const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
-                        teamProfile.push(engineer);
+                        teamArray.push(engineer);
                         break;
                     case "Intern":
                         const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
-                        teamProfile.push(intern);
+                        teamArray.push(intern);
                         break;
                 }
-                return addEmployee().then(() => resolve());
+                return addEmployee()
             } else {
-                return resolve();
+                createFile() 
+                
             }
+            
+         
         })
-    })
+       
+    }
+
+
+// Generate team page
+function createFile() {
+    if (!fs.existsSync(OUTPUT_DIR)){
+        fs.mkdirSync(OUTPUT_DIR);
+    } else {
+        fs.writeFileSync(outputPath, render(teamArray), "UTF-8")
+        console.log("Team Created! Check team.html!")
+    }
 }
 
-
-// Generate HTML page
-const writeFile = data =>{
-    fs.writeFile('./dist/index.html',data,err => {
-        if (err){
-            console.log(err);
-            return;
-        } else{
-            console.log("Team profile generated!")
-        }
-    })
-};
-
-// Call manager first, then employees - engineer & intern
-addManager()
-.then(addEmployee)
-.then(teamArray => {
-    return genereateHTML(teamArray);
-})
-.then(pageHTML => {
-    return writeFile(pageHTML);
-})
-.catch(err =>{
-    console.log(err);
-});
+startApp();
