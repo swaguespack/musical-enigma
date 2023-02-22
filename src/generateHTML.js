@@ -5,7 +5,7 @@ const managerCard = (teamArray) => {
     <div class="container is-fluid">
         <div class="manager">
                 <div class="card">
-                    <div "card-header has-background-primary has-text-white">
+                    <div class="card-header has-background-primary has-text-white">
                     <h4 class="card-header-title has-text-white">${teamArray.name}</h4>
                     <h5 class="card-header-icon has-text-weight-semibold is-size-5"><span class="material-icons p-1">local_cafe</span>Manager</h5>
                     </div>
@@ -32,9 +32,11 @@ const managerCard = (teamArray) => {
                             <h4 class="card-header-title has-text-white">${teamArray.name}</h4>
                             <h5 class="card-header-icon has-text-weight-semibold is-size-5"><span class="material-icons p-1">engineering</span>Engineer</h5>
                             </div>
+                            <div class="card-content">
                             <h6 class="p-2 is-size-5">ID: ${teamArray.id}</h6>
                             <h6 class="p-2 is-size-5">Email: <a href="mailto:${teamArray.email}">${teamArray.email}</a></h6>
                             <h6 class="p-2 is-size-5">GitHub: <a href="https://github.com/${teamArray.github}" target="_blank" rel="noopener noreferrer">${teamArray.github}</a></h6>
+                            </div>
                         </div>
                 </div>
             </div>
@@ -53,10 +55,11 @@ const managerCard = (teamArray) => {
                         <h4 class="card-header-title has-text-white">${teamArray.name}</h4>
                         <h5 class="card-header-icon has-text-weight-semibold is-size-5"><span class="material-icons p-1">school</span>Intern</h5>
                             </div>
-                            <p></p>
+                            <div class="card-content">
                             <h6 class="p-2 is-size-5">ID: ${teamArray.id}</h6>
                             <h6 class="p-2 is-size-5">Email: <a href="mailto:${teamArray.email}">${teamArray.email}</a></h6>
                             <h6 class="p-2 is-size-5">School: ${teamArray.school}</h6>
+                            </div>
                         </div>
                     
                 </div>

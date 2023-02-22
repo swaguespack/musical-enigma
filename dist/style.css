@@ -6,6 +6,7 @@
 
 .card {
     width: 18rem;
+    height: 18rem;
 }
 .card-header-title {
     font-size: 24px;
