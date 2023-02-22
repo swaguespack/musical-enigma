@@ -7,37 +7,39 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Team Portfolio</title>
         <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
+
     <body>
-        <header>
-            <h1>My Team</h1>
+        <header class="hero is-primary p-6 has-text-centered">
+            <h1 class="title">My Team</h1>
         </header>
-    <main>
-        <div class="flex-wrap">
+
+    <main class="hero-body">
+        <div class="is-flex is-justify-content-center">
     <section>
-    <div class="container">
+    <div class="container is-fluid">
         <div class="manager">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <div class="card-header bg-primary text-white">
-                    <h4 class="card-title"><span class="material-icons">local_cafe</span>Tim</h4>
-                    <h5 class="card-subtitle mb-2">Manager</h5>
+         
+                <div class="card">
+                    <div class="card-header has-background-primary has-text-white">
+                    <h4 class="card-header-title has-text-white">Tim</h4>
+                    <h5 class="card-header-icon has-text-weight-semibold is-size-5"><span class="material-icons p-1">local_cafe</span>Manager</h5>
                     </div>
-                    <p></p>
-                    <h6 class="card-text">ID: 98</h6>
-                    <h6 class="card-text">Email: <a href="mailto:tim@eio.com">tim@eio.com</a></h6>
-                    <h6 class="card-text">Office Number: 98</h6>
+                    <div class="card-content">
+                    <h6 class="p-2 is-size-5">ID: 98</h6>
+                    <h6 class="p-2 is-size-5">Email: <a href="mailto:tim@eio.com">tim@eio.com</a></h6>
+                    <h6 class="p-2 is-size-5">Office Number: 98</h6>
                 </div>
-            </div>
+                </div>
+          
         </div>
     </div>
     </section><section>
-            <div class="container">
+            <div class="container is-fluid">
                 <div class="engineer">
-                    <div class="card" style="width: 18rem;">
+                    <div class="card">
                         <div class="card-body">
                             <div class="card-header bg-primary text-white">
                             <h4 class="card-title"><span class="material-icons">engineering</span>Linda</h4>
@@ -53,9 +55,9 @@
             </div>
         </section>
         <section>
-            <div class="container">
+            <div class="container is-fluid">
                 <div class="intern">
-                    <div class="card" style="width: 18rem;">
+                    <div class="card">
                         <div class="card-body">
                             <div class="card-header bg-primary text-white">
                             <h4 class="card-title"><span class="material-icons">school</span>Milly</h4>
