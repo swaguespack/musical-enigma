@@ -6,7 +6,7 @@ test("Can create school.", () => {
     expect(e.school).toBe(testSchool);
 });
 
-test("Can get Office Number", () => {
+test("Can get school", () => {
     const testSchool = "Georgia Tech";
     const e = new Intern("Nick", 1, "nick@test.com", testSchool);
     expect(e.getSchool()).toBe(testSchool);
